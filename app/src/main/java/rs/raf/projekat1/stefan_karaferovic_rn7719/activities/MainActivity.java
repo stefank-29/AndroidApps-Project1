@@ -16,7 +16,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        initViewPager();
+        initNavigation();
 
     }
 
+    private void initViewPager() {
+
+    }
+
+    private void initNavigation() {
+
+    }
 }

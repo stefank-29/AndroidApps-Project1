@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_1"
+        android:icon="@drawable/ic_info"
+        android:title="@string/stanje" />
+
+    <item
+        android:id="@+id/navigation_2"
+        android:icon="@drawable/ic_plus"
+        android:title="@string/unos" />
+
+    <item
+        android:id="@+id/navigation_3"
+        android:icon="@drawable/ic_list"
+        android:title="@string/liste" />
+
+    <item
+        android:id="@+id/navigation_4"
+        android:icon="@drawable/ic_account"
+        android:title="@string/profil" />
+
+
+</menu>
