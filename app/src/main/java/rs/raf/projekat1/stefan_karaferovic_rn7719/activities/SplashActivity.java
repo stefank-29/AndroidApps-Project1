@@ -13,10 +13,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString(LoginActivity.LOGIN_USERNAME, null);
+//        String username = sharedPreferences.getString(LoginActivity.LOGIN_NAME, null);
         String password = sharedPreferences.getString(LoginActivity.LOGIN_PASSWORD, null);
         Intent intent;
-        if (username == null || password == null || !username.equals(LoginActivity.username) || !password.equals(LoginActivity.password)) {
+        if (password == null || !password.equals(LoginActivity.PASSWORD)) {
             intent = new Intent(this, LoginActivity.class);
 
         } else {

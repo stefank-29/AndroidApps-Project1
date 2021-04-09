@@ -6,4 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
+    <ImageView
+        android:id="@+id/loginIv"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@id/titleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:text="@string/novcanik_sistem_za_studente_raf_a"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginIv" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/loginBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText">
+
+        <EditText
+            android:id="@+id/nameEt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/unesite_ime"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/surnameEt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/unesite_prezime"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/banknameEt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/unesite_ime_banke"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/passwordEt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/unesite_sifru"
+            android:inputType="textPassword"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:padding="5dp"
+        android:text="@string/prijava"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
