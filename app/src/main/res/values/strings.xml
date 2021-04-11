@@ -10,4 +10,8 @@
     <string name="unos">Unos</string>
     <string name="liste">Liste</string>
     <string name="profil">Profil</string>
+    <string name="pregled_ukupnog_stanja_racuna">Pregled ukupnog stanja racuna</string>
+    <string name="rashod">Rashod:</string>
+    <string name="prihod">Prihod:</string>
+    <string name="razlika">Razlika:</string>
 </resources>
