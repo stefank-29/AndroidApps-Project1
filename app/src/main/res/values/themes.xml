@@ -12,6 +12,7 @@
         <item name="colorOnBackground">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/primaryDarkColor</item>
+        <item name="android:textColor">@color/black</item>
 
         <!-- Customize your theme here. -->
     </style>
@@ -28,6 +29,10 @@
         <item name="android:layout_marginVertical">20dp</item>
         <item name="android:layout_marginStart">50dp</item>
 
+    </style>
+
+    <style name="ListItem" parent="Theme.Rsrafprojekat1stefan_karaferovic_rn7719">
+        <item name="android:background">@color/lightBlue</item>
     </style>
 
 </resources>

@@ -12,5 +12,6 @@
     <color name="black">#000000</color>
     <color name="green">#64dd17</color>
     <color name="indigo">#001970</color>
+    <color name="lightBlue">#81d4fa</color>
 
 </resources>

@@ -34,4 +34,9 @@
         <item name="android:layout_marginStart">50dp</item>
 
     </style>
+
+    <style name="ListItem" parent="Theme.Rsrafprojekat1stefan_karaferovic_rn7719">
+        <item name="android:background">@color/primaryLightColor</item>
+    </style>
+
 </resources>
