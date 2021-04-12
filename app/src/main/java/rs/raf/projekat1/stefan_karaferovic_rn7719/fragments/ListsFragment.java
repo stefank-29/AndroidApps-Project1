@@ -40,7 +40,7 @@ public class ListsFragment extends Fragment {
     }
 
     private void initTabs(View view) {
-        viewPager.setAdapter(new ListsTabPagerAdapter(getFragmentManager())); // jer trazi fm
+        viewPager.setAdapter(new ListsTabPagerAdapter(getChildFragmentManager())); // jer trazi fm
         tabLayout.setupWithViewPager(viewPager); // vezem sa viewPager-om
     }
 }

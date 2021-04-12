@@ -55,7 +55,7 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     // Recycler View
-    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     // Fragment
     implementation "androidx.fragment:fragment:$fragment_version"
 }

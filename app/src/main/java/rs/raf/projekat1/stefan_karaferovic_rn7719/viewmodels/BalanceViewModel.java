@@ -64,4 +64,18 @@ public class BalanceViewModel extends ViewModel {
     public int getDifference() {
         return getIncomesSum() - getExpensesSum();
     }
+
+    public void deleteIncome(int id) {
+        incomesList.removeIf(finance -> finance.getId() == id);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(incomesList);
+        incomes.setValue(listToSubmit);
+    }
+
+    public void deleteExpense(int id) {
+        expensesList.removeIf(finance -> finance.getId() == id);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(expensesList);
+        expenses.setValue(listToSubmit);
+    }
+
+
 }

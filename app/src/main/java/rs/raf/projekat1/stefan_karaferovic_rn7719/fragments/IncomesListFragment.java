@@ -1,7 +1,9 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +41,7 @@ public class IncomesListFragment extends Fragment {
 
     private void init(View view) {
         initView(view);
-        initObservers(view);
+        initObservers();
         initRecycler();
     }
 
@@ -47,7 +49,7 @@ public class IncomesListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler);
     }
 
-    private void initObservers(View view) {
+    private void initObservers() {
         balanceViewModel.getIncomes().observe(getViewLifecycleOwner(), incomes -> {
             financeAdapter.submitList(incomes);
         });
@@ -56,6 +58,7 @@ public class IncomesListFragment extends Fragment {
     private void initRecycler() {
         financeAdapter = new IncomesAdapter(new FinanceDiffItemCallback(), finance -> {
             // na klik brisanje ili detaljan prikaz
+            balanceViewModel.deleteIncome(finance.getId());
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

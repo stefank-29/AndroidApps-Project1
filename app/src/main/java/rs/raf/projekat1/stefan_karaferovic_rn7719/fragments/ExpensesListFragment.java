@@ -32,7 +32,7 @@ public class ExpensesListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // instanciranje view modela
-        balanceViewModel = new ViewModelProvider(this).get(BalanceViewModel.class);
+        balanceViewModel = new ViewModelProvider(requireActivity()).get(BalanceViewModel.class);
         init(view);
     }
 
@@ -54,7 +54,7 @@ public class ExpensesListFragment extends Fragment {
 
     private void initRecycler(View view) {
         expensesAdapter = new ExpensesAdapter(new FinanceDiffItemCallback(), finance -> {
-            // na klik brisanje ili detaljan prikaz
+            balanceViewModel.deleteExpense(finance.getId());
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

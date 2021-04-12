@@ -29,7 +29,7 @@ public class BalanceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        balanceViewModel = new ViewModelProvider(this).get(BalanceViewModel.class);
+        balanceViewModel = new ViewModelProvider(requireActivity()).get(BalanceViewModel.class);
         init(view);
     }
 

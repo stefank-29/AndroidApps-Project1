@@ -48,7 +48,9 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
         public ViewHolder(@NonNull View itemView, Function<Integer, Void> onItemClicked) {
             super(itemView);
             // listeneri na click
-//            itemView.findViewById()
+            itemView.findViewById(R.id.deleteBtn).setOnClickListener(v -> {
+                onItemClicked.apply(getAdapterPosition());
+            });
         }
 
         // bindovanje podataka iz modela
