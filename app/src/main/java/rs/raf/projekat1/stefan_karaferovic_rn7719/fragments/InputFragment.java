@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +97,7 @@ public class InputFragment extends Fragment {
             String title = "";
             int amount = 0;
             String desc = "";
+            File file = null;
             String type = spinner.getSelectedItem().toString();
 
             if (titleEt.getText().toString().equals("")) {
@@ -113,25 +115,45 @@ public class InputFragment extends Fragment {
 
             }
 
-            if (inputViewModel.getDesciption().getValue().equals("")) {
-                valid = false;
-                Toast.makeText(getContext(), "Opis je obavezan", Toast.LENGTH_SHORT).show();
+
+            // provera opisa u zavisnosti od checkbox-a
+            if (checkBox.isChecked()) {
+                if (inputViewModel.getAudio().getValue().length() == 0) {
+                    valid = false;
+                    Toast.makeText(getContext(), "Opis je obavezan", Toast.LENGTH_SHORT).show();
+                } else {
+                    file = inputViewModel.getAudio().getValue();
+                }
             } else {
-                desc = inputViewModel.getDesciption().getValue();
+                if (inputViewModel.getDesciption().getValue().equals("")) {
+                    valid = false;
+                    Toast.makeText(getContext(), "Opis je obavezan", Toast.LENGTH_SHORT).show();
+                } else {
+                    desc = inputViewModel.getDesciption().getValue();
+                }
             }
+
 
             if (!valid) {
                 return;
             }
 
-            if (type.equals("Prihod")) {
-                balanceViewModel.addIncome(title, amount, desc);
-            } else if (type.equals("Rashod")) {
-                balanceViewModel.addExpense(title, amount, desc);
+            // TODO resetovati inpute
+            if (checkBox.isChecked()) {
+                if (type.equals("Prihod")) {
+                    balanceViewModel.addIncome(title, amount, file);
+                } else if (type.equals("Rashod")) {
+                    balanceViewModel.addExpense(title, amount, file);
+                }
+            } else {
+                if (type.equals("Prihod")) {
+                    balanceViewModel.addIncome(title, amount, desc);
+                } else if (type.equals("Rashod")) {
+                    balanceViewModel.addExpense(title, amount, desc);
+                }
             }
 
 
-            Toast.makeText(getContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
         });
 
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {

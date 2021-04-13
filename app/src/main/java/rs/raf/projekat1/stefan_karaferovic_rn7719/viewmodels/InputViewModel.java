@@ -21,6 +21,7 @@ public class InputViewModel extends ViewModel {
 
     public InputViewModel() {
         description.setValue("");
+        audio.setValue(new File("record.3pg"));
     }
 
     public void storeTitle(String input) {
