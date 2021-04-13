@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.InputViewModel;
 
 public class InputFragment extends Fragment {
+
+    private final String DESC_FRAGMENT_TAG = "descFragment";
+    private final String AUDIO_FRAGMENT_TAG = "audioFragment";
 
     // View comps
     private Spinner spinner;
@@ -119,5 +123,24 @@ public class InputFragment extends Fragment {
 
             Toast.makeText(getContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
         });
+
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            FragmentTransaction transaction = createTransactionWithAnimation();
+            if (isChecked) {
+                transaction.replace(R.id.inputFc, new AudioFragment());
+            } else {
+                transaction.replace(R.id.inputFc, new DescriptionFragment());
+            }
+            transaction.commit();
+        });
+    }
+
+    private FragmentTransaction createTransactionWithAnimation() {
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        // Dodajemo animaciju kada se fragment doda
+        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right);
+        // Dodajemo transakciju na backstack kako bi se pritisokm na back transakcija rollback-ovala
+        transaction.addToBackStack(null);
+        return transaction;
     }
 }
