@@ -1,5 +1,8 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.fragments;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -39,6 +43,12 @@ public class InputFragment extends Fragment {
     private InputViewModel inputViewModel;
     private BalanceViewModel balanceViewModel;
 
+    // Permission
+    private final int PERMISSION_ALL = 1;
+    private final String[] PERMISSIONS = {
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     public InputFragment() {
         super(R.layout.fragment_input);
@@ -127,7 +137,12 @@ public class InputFragment extends Fragment {
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             FragmentTransaction transaction = createTransactionWithAnimation();
             if (isChecked) {
-                transaction.replace(R.id.inputFc, new AudioFragment());
+                if (hasPermissions(getContext(), PERMISSIONS)) {
+                    transaction.replace(R.id.inputFc, new AudioFragment());
+                } else {
+                    requestPermissions(PERMISSIONS, PERMISSION_ALL);
+                }
+
             } else {
                 transaction.replace(R.id.inputFc, new DescriptionFragment());
             }
@@ -142,5 +157,42 @@ public class InputFragment extends Fragment {
         // Dodajemo transakciju na backstack kako bi se pritisokm na back transakcija rollback-ovala
         transaction.addToBackStack(null);
         return transaction;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    private boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        if (requestCode == PERMISSION_ALL) {
+            if (grantResults.length > 0) {
+                StringBuilder permissionsDenied = new StringBuilder();
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                        permissionsDenied.append("\n").append(permissions[i]);
+                    }
+                }
+                // nijedna nije odbijena
+                if (permissionsDenied.toString().length() == 0) {
+                    transaction.replace(R.id.inputFc, new AudioFragment());
+                    transaction.commit();
+                } else {
+                    Toast.makeText(getContext(), "Missing permissions!" + permissionsDenied.toString(), Toast.LENGTH_SHORT).show();
+                    checkBox.setChecked(false);
+
+                }
+            }
+        }
     }
 }
