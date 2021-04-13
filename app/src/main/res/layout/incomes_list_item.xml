@@ -20,12 +20,12 @@
     <TextView
         android:id="@+id/itemTitle"
         android:layout_width="80dp"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/itemAmount"
         app:layout_constraintStart_toEndOf="@id/dollarSign"
-        app:layout_constraintTop_toTopOf="parent" />`
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/itemAmount"

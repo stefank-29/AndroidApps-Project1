@@ -22,6 +22,12 @@
     <string name="audio">Audio</string>
     <string name="dodaj_u_listu">Dodaj u listu</string>
     <string name="opis">Opis</string>
+    <string name="podaci_o_prihodu_rashodu">Podaci o prihodu/rashodu</string>
+    <string name="naslov_">Naslov:</string>
+    <string name="kolicina_">Kolicina:</string>
+    <string name="opis_">Opis:</string>
+    <string name="odustani">Odustani</string>
+    <string name="izmeni">Izmeni</string>
 
     <string-array name="finance_types">
         <item>Prihod</item>

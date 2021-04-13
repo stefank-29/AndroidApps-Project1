@@ -1,8 +1,9 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.models;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Finance {
+public class Finance implements Serializable {
     private int id;
     private String title;
     private int amount;

@@ -1,9 +1,9 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.os.Parcelable;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,12 +12,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
+
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.activities.EditFinanceActivity;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.recycler.adapter.IncomesAdapter;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.recycler.differ.FinanceDiffItemCallback;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
 
-public class IncomesListFragment extends Fragment {
+public class IncomesListFragment extends Fragment implements Serializable {
 
     // View comps
     private RecyclerView recyclerView;
@@ -57,8 +61,14 @@ public class IncomesListFragment extends Fragment {
 
     private void initRecycler() {
         financeAdapter = new IncomesAdapter(new FinanceDiffItemCallback(), finance -> {
-            // na klik brisanje ili detaljan prikaz
+            // delete
             balanceViewModel.deleteIncome(finance.getId());
+            return null;
+        }, finance -> {
+            // edit
+            Intent intent = new Intent(getActivity(), EditFinanceActivity.class);
+            intent.putExtra(EditFinanceActivity.FINANCE_ID, finance);
+            startActivity(intent);
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

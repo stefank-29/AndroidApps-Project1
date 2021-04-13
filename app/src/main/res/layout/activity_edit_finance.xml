@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.EditFinanceActivity">
+
+    <TextView
+        android:id="@+id/editTv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="@string/podaci_o_prihodu_rashodu"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/editDollar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/editDollar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/ic_dollar_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTv" />
+
+    <LinearLayout
+        android:id="@+id/editLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="40dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:paddingHorizontal="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editDollar">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/naslov_"
+                android:textSize="24sp" />
+
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:hint="@string/naslov"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/kolicina_"
+                android:textSize="24sp" />
+
+
+            <EditText
+                android:id="@+id/editAmount"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:hint="@string/kolicina"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:text="@string/opis_"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editDesc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/edittext_border"
+            android:gravity="top"
+            android:hint="@string/opis"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:minLines="7"
+            android:padding="15dp"
+            android:scrollbars="vertical"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+
+            android:id="@+id/btnMic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_mic"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/btnRecording"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_recording"
+            android:visibility="gone">
+
+        </ImageView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/primaryDarkColor"
+        android:text="@string/odustani"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editLinear" />
+
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/primaryDarkColor"
+        android:text="@string/izmeni"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cancelBtn"
+        app:layout_constraintTop_toBottomOf="@id/editLinear" />
+</androidx.constraintlayout.widget.ConstraintLayout>
