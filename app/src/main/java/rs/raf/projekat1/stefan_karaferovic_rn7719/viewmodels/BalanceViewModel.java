@@ -77,5 +77,19 @@ public class BalanceViewModel extends ViewModel {
         expenses.setValue(listToSubmit);
     }
 
+    public void addIncome(String title, int amount, Object description) {
+        Finance finance = new Finance(counter++, title, amount, description);
+        incomesList.add(finance);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(incomesList);
+        incomes.setValue(listToSubmit);
+    }
+
+    public void addExpense(String title, int amount, Object description) {
+        Finance finance = new Finance(counter++, title, amount, description);
+        expensesList.add(finance);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(expensesList);
+        expenses.setValue(listToSubmit);
+    }
+
 
 }

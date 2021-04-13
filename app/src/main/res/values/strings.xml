@@ -16,4 +16,15 @@
     <string name="razlika">Razlika:</string>
     <string name="prihodi">PRIHODI</string>
     <string name="rashodi">RASHODI</string>
+    <string name="unos_novog_prihoda_ili_rashoda">Unos novog prihoda ili rashoda</string>
+    <string name="naslov">Naslov</string>
+    <string name="kolicina">Kolicina</string>
+    <string name="audio">Audio</string>
+    <string name="dodaj_u_listu">Dodaj u listu</string>
+    <string name="opis">Opis</string>
+
+    <string-array name="finance_types">
+        <item>Prihod</item>
+        <item>Rashod</item>
+    </string-array>
 </resources>
