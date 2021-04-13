@@ -38,6 +38,7 @@ public class InputFragment extends Fragment {
     private Spinner spinner;
     private EditText titleEt;
     private EditText amountEt;
+
     private CheckBox checkBox;
     private Button submitBtn;
 
@@ -67,7 +68,7 @@ public class InputFragment extends Fragment {
         initView(view);
         initFragment();
         initSpinner();
-        initListeners();
+        initListeners(view);
     }
 
     private void initView(View view) {
@@ -87,11 +88,11 @@ public class InputFragment extends Fragment {
 
     private void initFragment() {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.inputFc, new DescriptionFragment());
+        transaction.add(R.id.inputFc, new DescriptionFragment(), DESC_FRAGMENT_TAG);
         transaction.commit();
     }
 
-    private void initListeners() {
+    private void initListeners(View aview) {
         submitBtn.setOnClickListener(v -> {
             boolean valid = true;
             String title = "";
@@ -145,14 +146,28 @@ public class InputFragment extends Fragment {
                 } else if (type.equals("Rashod")) {
                     balanceViewModel.addExpense(title, amount, file);
                 }
+
             } else {
                 if (type.equals("Prihod")) {
                     balanceViewModel.addIncome(title, amount, desc);
                 } else if (type.equals("Rashod")) {
                     balanceViewModel.addExpense(title, amount, desc);
                 }
+                // Reset desc
+                Fragment fragment = null;
+                fragment = getChildFragmentManager().findFragmentByTag(DESC_FRAGMENT_TAG);
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+
+                transaction.remove(fragment);
+                transaction.add(R.id.inputFc, new DescriptionFragment(), DESC_FRAGMENT_TAG);
+                transaction.commit();
+
             }
 
+            titleEt.setText("");
+            amountEt.setText("");
+            inputViewModel.storeDescription("");
+            inputViewModel.storeAudio(new File("record.3pg"));
 
         });
 
@@ -160,13 +175,13 @@ public class InputFragment extends Fragment {
             FragmentTransaction transaction = createTransactionWithAnimation();
             if (isChecked) {
                 if (hasPermissions(getContext(), PERMISSIONS)) {
-                    transaction.replace(R.id.inputFc, new AudioFragment());
+                    transaction.replace(R.id.inputFc, new AudioFragment(), AUDIO_FRAGMENT_TAG);
                 } else {
                     requestPermissions(PERMISSIONS, PERMISSION_ALL);
                 }
 
             } else {
-                transaction.replace(R.id.inputFc, new DescriptionFragment());
+                transaction.replace(R.id.inputFc, new DescriptionFragment(), DESC_FRAGMENT_TAG);
             }
             transaction.commit();
         });
