@@ -89,6 +89,10 @@ public class DisplayFinanceActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
+        if (finance.getDescription() instanceof String) {
+            return;
+        }
+
         btnPlay.setOnClickListener(v -> {
             play();
         });
@@ -96,6 +100,7 @@ public class DisplayFinanceActivity extends AppCompatActivity {
         btnPause.setOnClickListener(v -> {
             pause();
         });
+
 
         mediaPlayer.setOnCompletionListener(v -> {
             pause();
