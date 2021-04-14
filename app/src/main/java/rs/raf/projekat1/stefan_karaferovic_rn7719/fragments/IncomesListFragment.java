@@ -1,9 +1,13 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +26,10 @@ import rs.raf.projekat1.stefan_karaferovic_rn7719.recycler.differ.FinanceDiffIte
 import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
 
 public class IncomesListFragment extends Fragment implements Serializable {
+
+    // Codes
+    public static final int FINANCE_REQUEST_CODE = 1;
+    public static final String FINANCE_RECEIVED = "financeRecived";
 
     // View comps
     private RecyclerView recyclerView;
@@ -67,11 +75,26 @@ public class IncomesListFragment extends Fragment implements Serializable {
         }, finance -> {
             // edit
             Intent intent = new Intent(getActivity(), EditFinanceActivity.class);
-            intent.putExtra(EditFinanceActivity.FINANCE_ID, finance);
-            startActivity(intent);
+            intent.putExtra(EditFinanceActivity.FINANCE, finance);
+            intent.putExtra(EditFinanceActivity.FINANCE_TYPE, "income");
+            startActivityForResult(intent, FINANCE_REQUEST_CODE);
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(financeAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case FINANCE_REQUEST_CODE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Finance finance = (Finance) data.getExtras().getSerializable(FINANCE_RECEIVED);
+                    balanceViewModel.editIncome(finance);
+                }
+                break;
+
+        }
     }
 }

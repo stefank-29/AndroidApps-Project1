@@ -2,6 +2,7 @@ package rs.raf.projekat1.stefan_karaferovic_rn7719.models;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Finance implements Serializable {
     private int id;
@@ -47,5 +48,19 @@ public class Finance implements Serializable {
 
     public void setDescription(Object description) {
         this.description = description;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Finance finance = (Finance) o;
+        return id == finance.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

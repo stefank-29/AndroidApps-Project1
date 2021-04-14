@@ -115,7 +115,7 @@
 
         <ImageView
 
-            android:id="@+id/btnMic"
+            android:id="@+id/buttonMic"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -123,7 +123,7 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/btnRecording"
+            android:id="@+id/buttonRecording"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"

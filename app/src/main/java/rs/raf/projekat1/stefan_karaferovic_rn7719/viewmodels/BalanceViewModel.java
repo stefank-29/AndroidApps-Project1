@@ -1,11 +1,15 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 
@@ -65,6 +69,7 @@ public class BalanceViewModel extends ViewModel {
         return getIncomesSum() - getExpensesSum();
     }
 
+    // delete
     public void deleteIncome(int id) {
         incomesList.removeIf(finance -> finance.getId() == id);
         ArrayList<Finance> listToSubmit = new ArrayList<>(incomesList);
@@ -77,6 +82,7 @@ public class BalanceViewModel extends ViewModel {
         expenses.setValue(listToSubmit);
     }
 
+    // add
     public void addIncome(String title, int amount, Object description) {
         Finance finance = new Finance(counter++, title, amount, description);
         incomesList.add(finance);
@@ -89,6 +95,14 @@ public class BalanceViewModel extends ViewModel {
         expensesList.add(finance);
         ArrayList<Finance> listToSubmit = new ArrayList<>(expensesList);
         expenses.setValue(listToSubmit);
+    }
+
+    // edit
+    public void editIncome(Finance finance) {
+        int index = incomesList.indexOf(finance);
+        incomesList.set(index, finance);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(incomesList);
+        incomes.setValue(listToSubmit);
     }
 
 
