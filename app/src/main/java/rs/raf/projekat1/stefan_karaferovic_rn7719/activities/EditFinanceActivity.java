@@ -27,7 +27,6 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
     public static final String FINANCE = "finance";
     public static final String FINANCE_TYPE = "finance_type";
 
-    private BalanceViewModel balanceViewModel;
 
     // View comps
     private EditText editTitle;
@@ -51,7 +50,6 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_finance);
-        balanceViewModel = new ViewModelProvider(this).get(BalanceViewModel.class);
         init();
     }
 
@@ -85,6 +83,8 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
             btnMic.setVisibility(View.VISIBLE);
         }
     }
+
+    // TODO snimanje audija edit
 
     private void initListeners() {
         cancelBtn.setOnClickListener(v -> {

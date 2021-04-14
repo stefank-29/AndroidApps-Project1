@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.Serializable;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.activities.DisplayFinanceActivity;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.activities.EditFinanceActivity;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.recycler.adapter.IncomesAdapter;
@@ -78,6 +79,11 @@ public class IncomesListFragment extends Fragment implements Serializable {
             intent.putExtra(EditFinanceActivity.FINANCE, finance);
             intent.putExtra(EditFinanceActivity.FINANCE_TYPE, "income");
             startActivityForResult(intent, INCOME_REQUEST_CODE);
+            return null;
+        }, finance -> {
+            Intent intent = new Intent(getActivity(), DisplayFinanceActivity.class);
+            intent.putExtra(DisplayFinanceActivity.FINANCE, finance);
+            startActivity(intent);
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

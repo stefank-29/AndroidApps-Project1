@@ -37,6 +37,7 @@
         android:orientation="vertical"
         android:padding="20dp"
         android:paddingHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editDollar">
@@ -56,12 +57,12 @@
                 android:textSize="24sp" />
 
 
-            <EditText
-                android:id="@+id/editTitle"
+            <TextView
+                android:id="@+id/titleTv"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:hint="@string/naslov"
-                android:inputType="text"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/border_bottom"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -80,12 +81,12 @@
                 android:textSize="24sp" />
 
 
-            <EditText
-                android:id="@+id/editAmount"
+            <TextView
+                android:id="@+id/amountTv"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:hint="@string/kolicina"
-                android:inputType="number"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/border_bottom"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -97,15 +98,14 @@
             android:text="@string/opis_"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/editDesc"
+        <TextView
+            android:id="@+id/descTv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="8dp"
             android:background="@drawable/edittext_border"
             android:gravity="top"
             android:hint="@string/opis"
-            android:inputType="textMultiLine"
             android:maxLines="10"
             android:minLines="7"
             android:padding="15dp"
@@ -117,47 +117,24 @@
 
         <ImageView
 
-            android:id="@+id/buttonMic"
+            android:id="@+id/btnPlay"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_mic"
+            android:src="@drawable/ic_play"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/buttonRecording"
+            android:id="@+id/btnPause"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_recording"
+            android:src="@drawable/ic_pause"
             android:visibility="gone">
 
         </ImageView>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/cancelBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/primaryDarkColor"
-        android:text="@string/odustani"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editLinear" />
 
-    <Button
-        android:id="@+id/editBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/primaryDarkColor"
-        android:text="@string/izmeni"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cancelBtn"
-        app:layout_constraintTop_toBottomOf="@id/editLinear" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,6 +100,9 @@ public class BalanceViewModel extends ViewModel {
     // edit
     public void editIncome(Finance finance) {
         int index = incomesList.indexOf(finance);
+        if (index < 0) {
+            return;
+        }
         incomesList.set(index, finance);
         ArrayList<Finance> listToSubmit = new ArrayList<>(incomesList);
         incomes.setValue(listToSubmit);
@@ -107,6 +110,9 @@ public class BalanceViewModel extends ViewModel {
 
     public void editExpense(Finance finance) {
         int index = expensesList.indexOf(finance);
+        if (index < 0) {
+            return;
+        }
         expensesList.set(index, finance);
         ArrayList<Finance> listToSubmit = new ArrayList<>(expensesList);
         expenses.setValue(listToSubmit);
