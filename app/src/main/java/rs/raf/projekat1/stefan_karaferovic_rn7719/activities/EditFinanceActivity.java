@@ -1,10 +1,16 @@
 package rs.raf.projekat1.stefan_karaferovic_rn7719.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +22,7 @@ import java.io.File;
 import java.io.Serializable;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.AudioFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.ExpensesListFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.IncomesListFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
@@ -37,24 +44,28 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
     private Button cancelBtn;
     private Button editBtn;
 
+    // Permission
+    private final int PERMISSION_ALL = 1;
+    private final String[] PERMISSIONS = {
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
 
     // Finance attributes
     private Finance finance;
     private String financeType;
-//    private String title;
-//    private int amount;
-//    private String desc;
-//    private File audio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_finance);
-        init();
+        parseIntent();
     }
 
     private void init() {
-        parseIntent();
+//        parseIntent();
         initView();
         initListeners();
     }
@@ -63,6 +74,15 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
         Intent intent = getIntent();
         this.finance = (Finance) intent.getExtras().getSerializable(FINANCE);
         this.financeType = intent.getExtras().getString(FINANCE_TYPE);
+        if (finance.getDescription() instanceof File) {
+            if (hasPermissions(this, PERMISSIONS)) {
+                init();
+            } else {
+                requestPermissions(PERMISSIONS, PERMISSION_ALL);
+            }
+            return;
+        }
+        init();
     }
 
     private void initView() {
@@ -84,7 +104,6 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
         }
     }
 
-    // TODO snimanje audija edit
 
     private void initListeners() {
         cancelBtn.setOnClickListener(v -> {
@@ -142,5 +161,41 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
 
     }
 
+
+    // Permissions
+    private boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (requestCode == PERMISSION_ALL) {
+            if (grantResults.length > 0) {
+                StringBuilder permissionsDenied = new StringBuilder();
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                        permissionsDenied.append("\n").append(permissions[i]);
+                    }
+                }
+                // nijedna nije odbijena
+                if (permissionsDenied.toString().length() == 0) {
+                    init();
+                } else {
+                    Toast.makeText(this, "Missing permissions!" + permissionsDenied.toString(), Toast.LENGTH_SHORT).show();
+                    finish();
+
+                }
+            }
+        }
+    }
 
 }

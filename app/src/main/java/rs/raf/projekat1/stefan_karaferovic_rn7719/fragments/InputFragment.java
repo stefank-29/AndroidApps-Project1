@@ -229,7 +229,7 @@ public class InputFragment extends Fragment {
                 }
                 // nijedna nije odbijena
                 if (permissionsDenied.toString().length() == 0) {
-                    transaction.replace(R.id.inputFc, new AudioFragment());
+                    transaction.replace(R.id.inputFc, new AudioFragment(), AUDIO_FRAGMENT_TAG);
                     transaction.commit();
                 } else {
                     Toast.makeText(getContext(), "Missing permissions!" + permissionsDenied.toString(), Toast.LENGTH_SHORT).show();
