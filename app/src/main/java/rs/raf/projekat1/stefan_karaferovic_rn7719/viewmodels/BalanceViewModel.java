@@ -105,5 +105,12 @@ public class BalanceViewModel extends ViewModel {
         incomes.setValue(listToSubmit);
     }
 
+    public void editExpense(Finance finance) {
+        int index = expensesList.indexOf(finance);
+        expensesList.set(index, finance);
+        ArrayList<Finance> listToSubmit = new ArrayList<>(expensesList);
+        expenses.setValue(listToSubmit);
+    }
+
 
 }

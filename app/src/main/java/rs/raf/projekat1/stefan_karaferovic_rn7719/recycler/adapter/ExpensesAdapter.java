@@ -17,12 +17,14 @@ import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 
 public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHolder> {
 
-    private Function<Finance, Void> onFinanceClicked;
+    private Function<Finance, Void> onDeleteFinanceClicked;
+    private Function<Finance, Void> onEditFinanceClicked;
 
 
-    public ExpensesAdapter(@NonNull DiffUtil.ItemCallback<Finance> diffCallback, Function<Finance, Void> onFinanceClicked) {
+    public ExpensesAdapter(@NonNull DiffUtil.ItemCallback<Finance> diffCallback, Function<Finance, Void> onDeleteFinanceClicked, Function<Finance, Void> onEditFinanceClicked) {
         super(diffCallback);
-        this.onFinanceClicked = onFinanceClicked;
+        this.onDeleteFinanceClicked = onDeleteFinanceClicked;
+        this.onEditFinanceClicked = onEditFinanceClicked;
     }
 
     @NonNull
@@ -31,7 +33,11 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.expenses_list_item, parent, false);
         return new ViewHolder(view, position -> {
             Finance finance = getItem(position);
-            onFinanceClicked.apply(finance);
+            onDeleteFinanceClicked.apply(finance);
+            return null;
+        }, position -> {
+            Finance finance = getItem(position);
+            onEditFinanceClicked.apply(finance);
             return null;
         });
     }
@@ -45,11 +51,15 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(@NonNull View itemView, Function<Integer, Void> onItemClicked) {
+        public ViewHolder(@NonNull View itemView, Function<Integer, Void> onDeleteClicked, Function<Integer, Void> onEditClicked) {
             super(itemView);
             // listeneri na click
             itemView.findViewById(R.id.deleteBtn).setOnClickListener(v -> {
-                onItemClicked.apply(getAdapterPosition());
+                onDeleteClicked.apply(getAdapterPosition());
+            });
+
+            itemView.findViewById(R.id.editBtn).setOnClickListener(v -> {
+                onEditClicked.apply(getAdapterPosition());
             });
         }
 

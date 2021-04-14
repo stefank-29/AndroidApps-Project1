@@ -139,7 +139,6 @@ public class InputFragment extends Fragment {
                 return;
             }
 
-            // TODO resetovati inpute
             if (checkBox.isChecked()) {
                 if (type.equals("Prihod")) {
                     balanceViewModel.addIncome(title, amount, file);

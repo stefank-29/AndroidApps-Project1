@@ -28,8 +28,8 @@ import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
 public class IncomesListFragment extends Fragment implements Serializable {
 
     // Codes
-    public static final int FINANCE_REQUEST_CODE = 1;
-    public static final String FINANCE_RECEIVED = "financeRecived";
+    public static final int INCOME_REQUEST_CODE = 1;
+    public static final String INCOME_RECEIVED = "financeRecived";
 
     // View comps
     private RecyclerView recyclerView;
@@ -77,7 +77,7 @@ public class IncomesListFragment extends Fragment implements Serializable {
             Intent intent = new Intent(getActivity(), EditFinanceActivity.class);
             intent.putExtra(EditFinanceActivity.FINANCE, finance);
             intent.putExtra(EditFinanceActivity.FINANCE_TYPE, "income");
-            startActivityForResult(intent, FINANCE_REQUEST_CODE);
+            startActivityForResult(intent, INCOME_REQUEST_CODE);
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -88,9 +88,9 @@ public class IncomesListFragment extends Fragment implements Serializable {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case FINANCE_REQUEST_CODE:
+            case INCOME_REQUEST_CODE:
                 if (resultCode == Activity.RESULT_OK) {
-                    Finance finance = (Finance) data.getExtras().getSerializable(FINANCE_RECEIVED);
+                    Finance finance = (Finance) data.getExtras().getSerializable(INCOME_RECEIVED);
                     balanceViewModel.editIncome(finance);
                 }
                 break;

@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.Serializable;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.ExpensesListFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.IncomesListFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
@@ -128,12 +129,12 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
 
             Intent returnIntent = new Intent();
             if (this.financeType.equals("income")) {
-//                balanceViewModel.editIncome(this.finance);
-                returnIntent.putExtra(IncomesListFragment.FINANCE_RECEIVED, this.finance);
+                returnIntent.putExtra(IncomesListFragment.INCOME_RECEIVED, this.finance);
                 setResult(Activity.RESULT_OK, returnIntent);
 
             } else if (this.financeType.equals("expense")) {
-
+                returnIntent.putExtra(ExpensesListFragment.EXPENSE_RECEIVED, this.finance);
+                setResult(Activity.RESULT_OK, returnIntent);
             }
             finish();
 
