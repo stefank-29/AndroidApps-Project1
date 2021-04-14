@@ -82,7 +82,6 @@ public class DisplayFinanceActivity extends AppCompatActivity {
     private void initPlayer() {
         if (finance.getDescription() instanceof File) {
             mediaPlayer = MediaPlayer.create(this, Uri.fromFile((File) finance.getDescription()));
-            Toast.makeText(this, finance.getDescription().toString(), Toast.LENGTH_SHORT).show();
         } else {
             return;
         }
@@ -95,6 +94,10 @@ public class DisplayFinanceActivity extends AppCompatActivity {
         });
 
         btnPause.setOnClickListener(v -> {
+            pause();
+        });
+
+        mediaPlayer.setOnCompletionListener(v -> {
             pause();
         });
 
