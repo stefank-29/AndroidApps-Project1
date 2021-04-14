@@ -92,7 +92,7 @@ public class InputFragment extends Fragment {
         transaction.commit();
     }
 
-    private void initListeners(View aview) {
+    private void initListeners(View view) {
         submitBtn.setOnClickListener(v -> {
             boolean valid = true;
             String title = "";

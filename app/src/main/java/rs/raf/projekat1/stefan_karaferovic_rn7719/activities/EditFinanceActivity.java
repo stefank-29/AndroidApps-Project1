@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.UUID;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.AudioFragment;
@@ -56,6 +59,10 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
     private Finance finance;
     private String financeType;
 
+    // Recorder
+    private MediaRecorder mediaRecorder;
+    private File file;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,8 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
 //        parseIntent();
         initView();
         initListeners();
+        initFile();
+        initRecordingListeners();
     }
 
     private void parseIntent() {
@@ -159,6 +168,49 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
 
         });
 
+    }
+
+    // Recording
+    private void initFile() {
+        File folder = new File(this.getFilesDir(), "sounds");
+        String uniqueString = UUID.randomUUID().toString();
+        if (!folder.exists()) folder.mkdir(); // ako ne postoji napravim ga
+        file = new File(folder, uniqueString + ".3pg");
+    }
+
+    private void initMediaRecorder(File file) {
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(file); // ono sto se snimi ispise se u file-u
+
+    }
+
+    private void initRecordingListeners() {
+        btnMic.setOnClickListener(v -> {
+            try {
+                btnMic.setVisibility(View.GONE);
+                btnRec.setVisibility(View.VISIBLE);
+                initMediaRecorder(file);
+                mediaRecorder.prepare(); // lifecycle
+                mediaRecorder.start(); // pocinje snimanje
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        btnRec.setOnClickListener(v -> {
+            btnMic.setVisibility(View.VISIBLE);
+            btnRec.setVisibility(View.GONE);
+            mediaRecorder.stop(); // zaustavi se snimanje
+            finance.setDescription(file);
+            mediaRecorder.release();
+            mediaRecorder = null; // skidam referencu da ne bi bilo memory leakova
+
+        });
     }
 
 
