@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+import java.util.UUID;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.BalanceViewModel;
@@ -28,8 +30,9 @@ import rs.raf.projekat1.stefan_karaferovic_rn7719.viewmodels.InputViewModel;
 public class AudioFragment extends Fragment {
 
     private MediaRecorder mediaRecorder;
-    public static File file;
-    InputViewModel inputViewModel;
+    private File file;
+    private InputViewModel inputViewModel;
+
 
     private final int PERMISSION_ALL = 1;
 
@@ -53,8 +56,9 @@ public class AudioFragment extends Fragment {
 
     private void init(View view) {
         File folder = new File(getActivity().getFilesDir(), "sounds");
+        String uniqueString = UUID.randomUUID().toString();
         if (!folder.exists()) folder.mkdir(); // ako ne postoji napravim ga
-        file = new File(folder, "record.3gp");
+        file = new File(folder, uniqueString + ".3pg");
         initListeners(view);
     }
 

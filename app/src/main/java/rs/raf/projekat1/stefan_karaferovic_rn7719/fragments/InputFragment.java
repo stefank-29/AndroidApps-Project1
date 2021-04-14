@@ -145,6 +145,14 @@ public class InputFragment extends Fragment {
                 } else if (type.equals("Rashod")) {
                     balanceViewModel.addExpense(title, amount, file);
                 }
+                // Reset audio          
+                Fragment fragment = null;
+                fragment = getChildFragmentManager().findFragmentByTag(AUDIO_FRAGMENT_TAG);
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+
+                transaction.remove(fragment);
+                transaction.add(R.id.inputFc, new AudioFragment(), AUDIO_FRAGMENT_TAG);
+                transaction.commit();
 
             } else {
                 if (type.equals("Prihod")) {
@@ -166,7 +174,7 @@ public class InputFragment extends Fragment {
             titleEt.setText("");
             amountEt.setText("");
             inputViewModel.storeDescription("");
-            inputViewModel.storeAudio(new File("record.3pg"));
+            inputViewModel.storeAudio(new File("aaa.3pg"));
 
         });
 
