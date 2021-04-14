@@ -145,7 +145,7 @@ public class InputFragment extends Fragment {
                 } else if (type.equals("Rashod")) {
                     balanceViewModel.addExpense(title, amount, file);
                 }
-                // Reset audio          
+                // Reset audio
                 Fragment fragment = null;
                 fragment = getChildFragmentManager().findFragmentByTag(AUDIO_FRAGMENT_TAG);
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();

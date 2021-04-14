@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import rs.raf.projekat1.stefan_karaferovic_rn7719.R;
+import rs.raf.projekat1.stefan_karaferovic_rn7719.activities.DisplayFinanceActivity;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.activities.EditFinanceActivity;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.models.Finance;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.recycler.adapter.ExpensesAdapter;
@@ -71,6 +72,11 @@ public class ExpensesListFragment extends Fragment {
             intent.putExtra(EditFinanceActivity.FINANCE, finance);
             intent.putExtra(EditFinanceActivity.FINANCE_TYPE, "expense");
             startActivityForResult(intent, EXPENSE_REQUEST_CODE);
+            return null;
+        }, finance -> {
+            Intent intent = new Intent(getActivity(), DisplayFinanceActivity.class);
+            intent.putExtra(DisplayFinanceActivity.FINANCE, finance);
+            startActivity(intent);
             return null;
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

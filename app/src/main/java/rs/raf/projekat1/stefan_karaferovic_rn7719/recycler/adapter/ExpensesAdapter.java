@@ -19,12 +19,14 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
 
     private Function<Finance, Void> onDeleteFinanceClicked;
     private Function<Finance, Void> onEditFinanceClicked;
+    private Function<Finance, Void> onFinanceClicked;
 
 
-    public ExpensesAdapter(@NonNull DiffUtil.ItemCallback<Finance> diffCallback, Function<Finance, Void> onDeleteFinanceClicked, Function<Finance, Void> onEditFinanceClicked) {
+    public ExpensesAdapter(@NonNull DiffUtil.ItemCallback<Finance> diffCallback, Function<Finance, Void> onDeleteFinanceClicked, Function<Finance, Void> onEditFinanceClicked, Function<Finance, Void> onFinanceClicked) {
         super(diffCallback);
         this.onDeleteFinanceClicked = onDeleteFinanceClicked;
         this.onEditFinanceClicked = onEditFinanceClicked;
+        this.onFinanceClicked = onFinanceClicked;
     }
 
     @NonNull
@@ -39,6 +41,10 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
             Finance finance = getItem(position);
             onEditFinanceClicked.apply(finance);
             return null;
+        }, position -> {
+            Finance finance = getItem(position);
+            onFinanceClicked.apply(finance);
+            return null;
         });
     }
 
@@ -51,7 +57,7 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(@NonNull View itemView, Function<Integer, Void> onDeleteClicked, Function<Integer, Void> onEditClicked) {
+        public ViewHolder(@NonNull View itemView, Function<Integer, Void> onDeleteClicked, Function<Integer, Void> onEditClicked, Function<Integer, Void> onItemClicked) {
             super(itemView);
             // listeneri na click
             itemView.findViewById(R.id.deleteBtn).setOnClickListener(v -> {
@@ -60,6 +66,10 @@ public class ExpensesAdapter extends ListAdapter<Finance, ExpensesAdapter.ViewHo
 
             itemView.findViewById(R.id.editBtn).setOnClickListener(v -> {
                 onEditClicked.apply(getAdapterPosition());
+            });
+
+            itemView.setOnClickListener(v -> {
+                onItemClicked.apply(getAdapterPosition());
             });
         }
 
