@@ -36,4 +36,8 @@
         <item name="android:background">@color/lightBlue</item>
     </style>
 
+    <style name="DollarSign" parent="Theme.Rsrafprojekat1stefan_karaferovic_rn7719">
+        <item name="tint">@color/black</item>
+    </style>
+
 </resources>

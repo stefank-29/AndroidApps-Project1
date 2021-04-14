@@ -21,6 +21,7 @@
 
     <ImageView
         android:id="@+id/editDollar"
+        style="@style/DollarSign"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginVertical="20dp"
@@ -118,6 +119,7 @@
         <ImageView
 
             android:id="@+id/buttonMic"
+            style="@style/DollarSign"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"

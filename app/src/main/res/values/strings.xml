@@ -27,7 +27,14 @@
     <string name="kolicina_">Kolicina:</string>
     <string name="opis_">Opis:</string>
     <string name="odustani">Odustani</string>
+    <string name="podaci_o_korisniku">Podaci o korisniku</string>
+    <string name="ime">Ime</string>
+    <string name="prezime">Prezime</string>
     <string name="izmeni">Izmeni</string>
+    <string name="odjava">Odjava</string>
+    <string name="ime_">Ime:</string>
+    <string name="prezime_">Prezime:</string>
+    <string name="banka">Banka:</string>
 
     <string-array name="finance_types">
         <item>Prihod</item>

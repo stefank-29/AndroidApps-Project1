@@ -128,7 +128,6 @@ public class LoginActivity extends AppCompatActivity {
                     .putString(LOGIN_PASSWORD, password)
                     .apply();
 
-            // saljem username kao intent nakon login-a
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
