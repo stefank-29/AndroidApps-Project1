@@ -86,7 +86,11 @@ public class AccountFragment extends Fragment {
         });
 
         btnLogout.setOnClickListener(v -> {
-
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getActivity().getPackageName(), Context.MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         });
     }
 
