@@ -140,9 +140,9 @@ public class InputFragment extends Fragment {
             }
 
             if (checkBox.isChecked()) {
-                if (type.equals("Prihod")) {
+                if (type.equals("Prihod") || type.equals("Income")) {
                     balanceViewModel.addIncome(title, amount, file);
-                } else if (type.equals("Rashod")) {
+                } else if (type.equals("Rashod") || type.equals("Expense")) {
                     balanceViewModel.addExpense(title, amount, file);
                 }
                 // Reset audio
@@ -155,9 +155,9 @@ public class InputFragment extends Fragment {
                 transaction.commit();
 
             } else {
-                if (type.equals("Prihod")) {
+                if (type.equals("Prihod") || type.equals("Income")) {
                     balanceViewModel.addIncome(title, amount, desc);
-                } else if (type.equals("Rashod")) {
+                } else if (type.equals("Rashod") || type.equals("Expense")) {
                     balanceViewModel.addExpense(title, amount, desc);
                 }
                 // Reset desc
