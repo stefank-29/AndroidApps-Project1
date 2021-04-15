@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.Locale;
+
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.AccountFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.BalanceFragment;
 import rs.raf.projekat1.stefan_karaferovic_rn7719.fragments.ExpensesListFragment;
@@ -53,12 +55,19 @@ public class ListsTabPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        // TODO: dodati za engleski prevod
         switch (position) {
             case FRAGMENT_1:
-                return "PRIHODI";
+                if (Locale.getDefault().getLanguage().equals("en")) {
+                    return "INCOMES";
+                } else {
+                    return "PRIHODI";
+                }
             default:
-                return "RASHODI";
+                if (Locale.getDefault().getLanguage().equals("en")) {
+                    return "EXPENSES";
+                } else {
+                    return "RASHODI";
+                }
         }
     }
 }

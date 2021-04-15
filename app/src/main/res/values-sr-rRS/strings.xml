@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">rs.raf.projekat1.stefan_karaferovic_rn7719</string>
+    <string name="prijava">Prijava</string>
+    <string name="unesite_ime">Unesite ime</string>
+    <string name="unesite_prezime">Unesite prezime</string>
+    <string name="unesite_ime_banke">Unesite ime banke</string>
+    <string name="unesite_sifru">Unesite sifru</string>
+    <string name="novcanik_sistem_za_studente_raf_a">Novcanik sistem za studente RAF-a</string>
+    <string name="stanje">Stanje</string>
+    <string name="unos">Unos</string>
+    <string name="liste">Liste</string>
+    <string name="profil">Profil</string>
+    <string name="pregled_ukupnog_stanja_racuna">Pregled ukupnog stanja racuna</string>
+    <string name="rashod">Rashod:</string>
+    <string name="prihod">Prihod:</string>
+    <string name="razlika">Razlika:</string>
+    <string name="prihodi">PRIHODI</string>
+    <string name="rashodi">RASHODI</string>
+    <string name="unos_novog_prihoda_ili_rashoda">Unos novog prihoda ili rashoda</string>
+    <string name="naslov">Naslov</string>
+    <string name="kolicina">Kolicina</string>
+    <string name="audio">Audio</string>
+    <string name="dodaj_u_listu">Dodaj u listu</string>
+    <string name="opis">Opis</string>
+    <string name="podaci_o_prihodu_rashodu">Podaci o prihodu/rashodu</string>
+    <string name="naslov_">Naslov:</string>
+    <string name="kolicina_">Kolicina:</string>
+    <string name="opis_">Opis:</string>
+    <string name="podaci_o_korisniku">Podaci o korisniku</string>
+    <string name="ime">Ime</string>
+    <string name="prezime">Prezime</string>
+    <string name="izmeni">Izmeni</string>
+    <string name="odjava">Odjava</string>
+    <string name="ime_">Ime:</string>
+    <string name="prezime_">Prezime:</string>
+    <string name="banka">Banka:</string>
+    <string name="odustani">Odustani</string>
+    <string name="sacuvaj">Sacuvaj</string>
+
+    <string-array name="finance_types">
+        <item>Prihod</item>
+        <item>Rashod</item>
+    </string-array>
+</resources>

@@ -8,7 +8,6 @@ public class Finance implements Serializable {
     private int id;
     private String title;
     private int amount;
-    //    private File audio;
     private Object description;
 
     public Finance(int id, String title, int amount, Object description) {

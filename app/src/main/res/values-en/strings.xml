@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">rs.raf.projekat1.stefan_karaferovic_rn7719</string>
+    <string name="prijava">Login</string>
+    <string name="unesite_ime">Enter name</string>
+    <string name="unesite_prezime">Enter surname</string>
+    <string name="unesite_ime_banke">Enter bank name</string>
+    <string name="unesite_sifru">Enter passworda</string>
+    <string name="novcanik_sistem_za_studente_raf_a">Wallet system for RAF students</string>
+    <string name="stanje">Balance</string>
+    <string name="unos">Input</string>
+    <string name="liste">Lists</string>
+    <string name="profil">Account</string>
+    <string name="pregled_ukupnog_stanja_racuna">Overview of the total account balance</string>
+    <string name="rashod">Expense:</string>
+    <string name="prihod">Income:</string>
+    <string name="razlika">Difference:</string>
+    <string name="prihodi">INCOMES</string>
+    <string name="rashodi">EXPENSES</string>
+    <string name="unos_novog_prihoda_ili_rashoda">Enter new income or expense</string>
+    <string name="naslov">Title</string>
+    <string name="kolicina">Amount</string>
+    <string name="audio">Audio</string>
+    <string name="dodaj_u_listu">Add to list</string>
+    <string name="opis">Description</string>
+    <string name="podaci_o_prihodu_rashodu">Income / expenditure data</string>
+    <string name="naslov_">Title:</string>
+    <string name="kolicina_">Amount:</string>
+    <string name="opis_">Description:</string>
+    <string name="podaci_o_korisniku">User information</string>
+    <string name="ime">Name</string>
+    <string name="prezime">Surname</string>
+    <string name="izmeni">Edit</string>
+    <string name="odjava">Logout</string>
+    <string name="ime_">Name:</string>
+    <string name="prezime_">Surname:</string>
+    <string name="banka">Bank:</string>
+    <string name="odustani">Cancel</string>
+    <string name="sacuvaj">Save</string>
+
+    <string-array name="finance_types">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+</resources>

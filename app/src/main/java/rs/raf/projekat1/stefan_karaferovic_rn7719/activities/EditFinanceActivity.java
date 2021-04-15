@@ -75,8 +75,10 @@ public class EditFinanceActivity extends AppCompatActivity implements Serializab
 //        parseIntent();
         initView();
         initListeners();
-        initFile();
-        initRecordingListeners();
+        if (finance.getDescription() instanceof File) {
+            initFile();
+            initRecordingListeners();
+        }
     }
 
     private void parseIntent() {
